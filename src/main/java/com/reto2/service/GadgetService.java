@@ -36,30 +36,32 @@ public class GadgetService {
     public Gadget update(Gadget gadget) {
 
         if (gadget.getId()!= null) {
-            Optional<Gadget> supplementDb = repositorio.getGadget(gadget.getId());
-            if (!supplementDb.isEmpty()) {
+            Optional<Gadget> gadgetDB = repositorio.getGadget(gadget.getId());
+            if (!gadgetDB.isEmpty()) {
                 if (gadget.getBrand() != null) {
-                    supplementDb.get().setBrand(gadget.getBrand());
+                    gadgetDB.get().setBrand(gadget.getBrand());
                 }
                 if (gadget.getCategory() != null) {
-                    supplementDb.get().setCategory(gadget.getCategory());
+                    gadgetDB.get().setCategory(gadget.getCategory());
                 }
-
+                if (gadget.getName()!= null) {
+                    gadgetDB.get().setName(gadget.getName());
+                }
                 if (gadget.getDescription() != null) {
-                    supplementDb.get().setDescription(gadget.getDescription());
+                    gadgetDB.get().setDescription(gadget.getDescription());
                 }
                 if (gadget.getPrice() != 0.0) {
-                    supplementDb.get().setPrice(gadget.getPrice());
+                    gadgetDB.get().setPrice(gadget.getPrice());
                 }
                 if (gadget.getQuantity() != 0) {
-                    supplementDb.get().setQuantity(gadget.getQuantity());
+                    gadgetDB.get().setQuantity(gadget.getQuantity());
                 }
                 if (gadget.getPhotography() != null) {
-                    supplementDb.get().setPhotography(gadget.getPhotography());
+                    gadgetDB.get().setPhotography(gadget.getPhotography());
                 }
-                supplementDb.get().setAvailability(gadget.isAvailability());
-                repositorio.update(supplementDb.get());
-                return supplementDb.get();
+                gadgetDB.get().setAvailability(gadget.isAvailability());
+                repositorio.update(gadgetDB.get());
+                return gadgetDB.get();
             } else {
                 return gadget;
             }
